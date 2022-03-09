@@ -32,9 +32,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:sqlserver://localhost:1433;database=ShopSimple2022T3
+    url: jdbc:sqlserver://localhost:1433;database=ShopSimple2022TEST;encrypt=true;trustServerCertificate=true
     username: SA
-    password: yourStrong(!)Password
+    password: 123456
     hikari:
       poolName: Hikari
       auto-commit: false

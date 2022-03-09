@@ -1,0 +1,8 @@
+entity Student {
+	address String,
+	phone String
+}
+
+dto * with mapstruct
+service all with serviceImpl
+

@@ -108,6 +108,7 @@
   },
   "defaultProject": "shop-simple-2022-t-3",
   "cli": {
+    "analytics": false,
     "cache": {
       "enabled": true,
       "path": "./target/angular/",

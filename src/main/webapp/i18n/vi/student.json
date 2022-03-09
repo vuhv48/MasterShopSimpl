@@ -1,0 +1,25 @@
+{
+  "shopSimple2022T3App": {
+    "student": {
+      "home": {
+        "title": "Students",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Thêm mới một Student",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Student",
+        "notFound": "No Students found"
+      },
+      "created": "Một Student mới được tạo với định danh {{ param }}",
+      "updated": "Một Student cập nhật với định danh {{ param }}",
+      "deleted": "Một Student đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Student {{ id }}?"
+      },
+      "detail": {
+        "title": "Student"
+      },
+      "id": "ID",
+      "address": "Address",
+      "phone": "Phone"
+    }
+  }
+}
