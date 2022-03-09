@@ -1,0 +1,32 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+version: '3.8'
+services:
+  shopsimple2022t3-app:
+    image: shopsimple2022t3
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,api-docs
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:sqlserver://shopsimple2022t3-mssql:1433;database=ShopSimple2022T3
+      - SPRING_LIQUIBASE_URL=jdbc:sqlserver://shopsimple2022t3-mssql:1433;database=ShopSimple2022T3
+      - JHIPSTER_SLEEP=60 # gives time for mssql server to start
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 127.0.0.1:8080:8080
+  shopsimple2022t3-mssql:
+    image: mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04
+    # volumes are not supported on macOS
+    # volumes:
+    #   - ~/volumes/jhipster/tempdb/mssql/:/var/opt/mssql/data/
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+      - SA_PASSWORD=yourStrong(!)Password
+      - MSSQL_DATABASE=ShopSimple2022T3
+      - MSSQL_SLEEP=60
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 127.0.0.1:1433:1433
+    command: /bin/bash -c '/opt/mssql/bin/sqlservr & echo "wait $$MSSQL_SLEEP sec for DB to start "; sleep $$MSSQL_SLEEP; /opt/mssql-tools/bin/sqlcmd -U sa -P $$SA_PASSWORD -d tempdb -q "EXIT(CREATE DATABASE $$MSSQL_DATABASE)"; wait;'
