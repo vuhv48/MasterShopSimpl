@@ -43,7 +43,7 @@ public class Order {
     private String phone;
 
     @Column
-    private String zipcode;
+    private String code;
 
     @Column
     private String consignee;

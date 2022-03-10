@@ -1,5 +1,6 @@
 package com.mycompany.myapp.service.impl;
 
+import com.mycompany.myapp.domain.Product;
 import com.mycompany.myapp.repository.ProductRepository;
 import com.mycompany.myapp.service.IProductService;
 import com.mycompany.myapp.service.dto.ProductDTO;
@@ -22,5 +23,13 @@ public class ProductServiceImpl implements IProductService {
     public List<ProductDTO> findAll() {
         return productRepository.findAll().stream().map(productMapper::toDto).collect(Collectors.toList());
         //return null;
+    }
+
+    @Override
+    public ProductDTO save(ProductDTO productDTO) {
+        // TODO Auto-generated method stub
+        Product product = productMapper.toEntity(productDTO);
+        product = productRepository.save(product);
+        return productMapper.toDto(product);
     }
 }

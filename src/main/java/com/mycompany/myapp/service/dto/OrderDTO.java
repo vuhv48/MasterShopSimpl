@@ -3,8 +3,8 @@ package com.mycompany.myapp.service.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 public class OrderDTO {
 
     private Long id;
@@ -19,7 +19,7 @@ public class OrderDTO {
 
     private String phone;
 
-    private String zipcode;
+    private String code;
 
     private String consignee;
 
