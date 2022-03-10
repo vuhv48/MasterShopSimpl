@@ -9,11 +9,9 @@ import org.mapstruct.Mapping;
 public interface OrderItemMapper extends EntityMapper<OrderItemDTO, OrderItem> {
     @Mapping(source = "order.id", target = "orderId")
     @Mapping(source = "product.id", target = "productId")
-    @Mapping(source = "user.id", target = "userId")
     OrderItemDTO toDto(OrderItem orderItem);
 
     @Mapping(source = "orderId", target = "order.id")
     @Mapping(source = "productId", target = "product.id")
-    @Mapping(source = "userId", target = "user.id")
     OrderItem toEntity(OrderItemDTO orderItemDTO);
 }

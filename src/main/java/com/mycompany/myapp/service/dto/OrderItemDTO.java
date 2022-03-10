@@ -8,11 +8,8 @@ import lombok.Setter;
 public class OrderItemDTO {
 
     private Long id;
-
     private String createTime;
-
     private String updateTime;
-
     private String orderNumber;
     private Long productId;
     private Long orderId;
