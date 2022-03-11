@@ -1,6 +1,8 @@
 package com.mycompany.myapp.service.impl;
 
+import com.mycompany.myapp.domain.OrderItem;
 import com.mycompany.myapp.repository.OrderItemRepository;
+import com.mycompany.myapp.repository.OrderRepository;
 import com.mycompany.myapp.service.IOrderItemService;
 import com.mycompany.myapp.service.dto.OrderItemDTO;
 import com.mycompany.myapp.service.mapper.OrderItemMapper;
@@ -20,5 +22,12 @@ public class OrderItemServiceImpl implements IOrderItemService {
 
     public List<OrderItemDTO> findAll() {
         return orderItemRepository.findAll().stream().map(orderItemMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public OrderItemDTO save(OrderItemDTO orderItemDTO) {
+        OrderItem orderItem = orderItemMapper.toEntity(orderItemDTO);
+        orderItem = orderItemRepository.save(orderItem);
+        return orderItemMapper.toDto(orderItem);
     }
 }

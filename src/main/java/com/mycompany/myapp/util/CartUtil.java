@@ -14,23 +14,23 @@ public class CartUtil {
 
     public static final String CART = Constants.CART;
 
-    public void saveProductToCart(HttpSession session, ProductDTO productDTO, Integer total) {
-        Map<Integer, CartItem> cartItemMap = (HashMap<Integer, CartItem>) session.getAttribute(CART);
+    public static void saveProductToCart(HttpSession session, ProductDTO productDTO, Integer total) {
+        Map<Long, CartItem> cartItemMap = (HashMap<Long, CartItem>) session.getAttribute(CART);
         CartItem ci = new CartItem(productDTO, total);
         if (cartItemMap == null) {
-            cartItemMap = new HashMap<Integer, CartItem>();
+            cartItemMap = new HashMap<Long, CartItem>();
         }
         if (cartItemMap.containsKey(productDTO.getId())) {
             CartItem currentCi = cartItemMap.get(productDTO.getId());
             currentCi.setTotal(currentCi.getTotal() + total);
-            cartItemMap.put(productDTO.getId().intValue(), ci);
+            cartItemMap.put(productDTO.getId(), currentCi);
         } else {
-            cartItemMap.put(productDTO.getId().intValue(), ci);
+            cartItemMap.put(productDTO.getId(), ci);
         }
         session.setAttribute(CART, cartItemMap);
     }
 
-    public synchronized void deleteProductFromCart(HttpSession session, Integer productDtoId) {
+    public static synchronized void deleteProductFromCart(HttpSession session, Integer productDtoId) {
         Map<Integer, CartItem> cartItemMap = (HashMap<Integer, CartItem>) session.getAttribute(CART);
         if (cartItemMap != null) {
             cartItemMap.remove(productDtoId);
@@ -53,7 +53,7 @@ public class CartUtil {
         for (CartItem ci : cartItemMap.values()) {
             OrderItemDTO oi = new OrderItemDTO();
             oi.setProductId(ci.getProductDTO().getId());
-            oi.setQuantity(oi.getQuantity());
+            oi.setQuantity(ci.getTotal());
             orderItemDTOs.add(oi);
         }
         return orderItemDTOs;

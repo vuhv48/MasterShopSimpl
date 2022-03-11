@@ -32,4 +32,14 @@ public class ProductServiceImpl implements IProductService {
         product = productRepository.save(product);
         return productMapper.toDto(product);
     }
+
+    @Override
+    public ProductDTO findById(Long id) {
+        // TODO Auto-generated method stub
+        Product product = productRepository.findById(id).get();
+        if (product == null) {
+            return null;
+        }
+        return productMapper.toDto(product);
+    }
 }

@@ -3,6 +3,7 @@ package com.mycompany.myapp.service.impl;
 import com.mycompany.myapp.repository.OrderRepository;
 import com.mycompany.myapp.service.IOrderService;
 import com.mycompany.myapp.service.dto.OrderDTO;
+import com.mycompany.myapp.service.dto.OrderItemDTO;
 import com.mycompany.myapp.service.mapper.OrderMapper;
 import java.util.List;
 import java.util.Optional;
@@ -51,6 +52,12 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public void updateOrderStatus(Long orderId, Integer status) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void addOrderDTO(OrderDTO orderDTO, List<OrderItemDTO> orderItemDTOs) {
         // TODO Auto-generated method stub
 
     }

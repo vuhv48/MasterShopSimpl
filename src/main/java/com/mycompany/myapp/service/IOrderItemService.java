@@ -5,4 +5,6 @@ import java.util.List;
 
 public interface IOrderItemService {
     List<OrderItemDTO> findAll();
+
+    OrderItemDTO save(OrderItemDTO orderItemDTO);
 }

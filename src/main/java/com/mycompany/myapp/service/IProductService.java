@@ -7,4 +7,6 @@ public interface IProductService {
     List<ProductDTO> findAll();
 
     ProductDTO save(ProductDTO productDTO);
+
+    ProductDTO findById(Long id);
 }
