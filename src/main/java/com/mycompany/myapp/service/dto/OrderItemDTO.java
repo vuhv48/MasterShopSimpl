@@ -13,4 +13,5 @@ public class OrderItemDTO {
     private String orderNumber;
     private Long productId;
     private Long orderId;
+    private Integer quantity;
 }

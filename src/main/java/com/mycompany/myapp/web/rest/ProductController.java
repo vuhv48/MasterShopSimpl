@@ -1,15 +1,19 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.security.SecurityUtils;
+import com.mycompany.myapp.service.IPictureService;
 import com.mycompany.myapp.service.IProductService;
+import com.mycompany.myapp.service.UserService;
 import com.mycompany.myapp.service.dto.ProductDTO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +28,12 @@ public class ProductController {
 
     @Autowired
     IProductService productService;
+
+    @Autowired
+    IPictureService pictureService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/product/test")
     public String findAllTest() {
@@ -48,9 +58,11 @@ public class ProductController {
         if (file != null && !file.isEmpty()) {
             System.out.println("upload Imaage");
         }
-        productDTO.setUserId(1l);
         //productDTO.setCreateTime(sdf.format(new Date()));
-
+        User userCurrentLogin = userService.getUserWithAuthorities().get();
+        if (userCurrentLogin != null) {
+            productDTO.setUserId(userCurrentLogin.getId());
+        }
         productDTO = productService.save(productDTO);
         System.out.println("ok ok 2000-10-10 00:00:00");
         return productDTO;
