@@ -4,8 +4,10 @@ import com.mycompany.myapp.service.IProductService;
 import com.mycompany.myapp.service.dto.OrderItemDTO;
 import com.mycompany.myapp.service.dto.ProductDTO;
 import com.mycompany.myapp.service.util.Constants;
+import com.mycompany.myapp.util.CartItem;
 import com.mycompany.myapp.util.CartUtil;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -24,8 +26,8 @@ public class CartController {
     IProductService productService;
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
-    public String cart(HttpSession session, Model model) {
-        return "test cart controller...";
+    public Map<Long, CartItem> cart(HttpSession session) {
+        return CartUtil.getAllCartItem(session);
     }
 
     @RequestMapping(value = "/cart/addToCart", method = RequestMethod.POST)
@@ -38,5 +40,20 @@ public class CartController {
         System.out.println("-------------");
 
         return CartUtil.getOrderItemFromCart(session).stream().filter(o1 -> (o1.getProductId().equals(id))).findAny().orElse(null);
+    }
+
+    @RequestMapping(value = "/cart/deleteAll", method = RequestMethod.DELETE)
+    public boolean deleteAllFromCart(HttpSession session) {
+        CartUtil.cleanCart(session);
+        if (CartUtil.getAllCartItem(session) == null) {
+            return true;
+        }
+        return false;
+    }
+
+    @RequestMapping(value = "/cart/delete/{productDtoId}", method = RequestMethod.DELETE)
+    public Long deleteFromCart(@PathVariable Long productDtoId, HttpSession session) {
+        CartUtil.deleteProductFromCart(session, productDtoId);
+        return productDtoId;
     }
 }

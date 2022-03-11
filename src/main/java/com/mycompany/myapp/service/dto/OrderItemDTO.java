@@ -10,8 +10,6 @@ import lombok.ToString;
 public class OrderItemDTO {
 
     private Long id;
-    private String createTime;
-    private String updateTime;
     private Long productId;
     private Long orderId;
     private Integer quantity;

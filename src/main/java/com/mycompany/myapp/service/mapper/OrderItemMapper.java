@@ -9,13 +9,9 @@ import org.mapstruct.Mapping;
 public interface OrderItemMapper extends EntityMapper<OrderItemDTO, OrderItem> {
     @Mapping(source = "order.id", target = "orderId")
     @Mapping(source = "product.id", target = "productId")
-    @Mapping(source = "createTime", target = "createTime", dateFormat = "yyyy-MM-dd hh:mm:ss")
-    @Mapping(source = "updateTime", target = "updateTime", dateFormat = "yyyy-MM-dd hh:mm:ss")
     OrderItemDTO toDto(OrderItem orderItem);
 
     @Mapping(source = "orderId", target = "order.id")
     @Mapping(source = "productId", target = "product.id")
-    @Mapping(source = "createTime", target = "createTime", dateFormat = "yyyy-MM-dd hh:mm:ss")
-    @Mapping(source = "updateTime", target = "updateTime", dateFormat = "yyyy-MM-dd hh:mm:ss")
     OrderItem toEntity(OrderItemDTO orderItemDTO);
 }

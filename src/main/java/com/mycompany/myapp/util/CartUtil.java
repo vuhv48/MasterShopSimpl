@@ -30,16 +30,16 @@ public class CartUtil {
         session.setAttribute(CART, cartItemMap);
     }
 
-    public static synchronized void deleteProductFromCart(HttpSession session, Integer productDtoId) {
-        Map<Integer, CartItem> cartItemMap = (HashMap<Integer, CartItem>) session.getAttribute(CART);
+    public static synchronized void deleteProductFromCart(HttpSession session, Long productDtoId) {
+        Map<Long, CartItem> cartItemMap = (HashMap<Long, CartItem>) session.getAttribute(CART);
         if (cartItemMap != null) {
             cartItemMap.remove(productDtoId);
         }
         session.setAttribute(CART, cartItemMap);
     }
 
-    public synchronized void cleanCart(HttpSession session) {
-        Map<Integer, CartItem> cartItemMap = (HashMap<Integer, CartItem>) session.getAttribute(CART);
+    public static synchronized void cleanCart(HttpSession session) {
+        Map<Long, CartItem> cartItemMap = (HashMap<Long, CartItem>) session.getAttribute(CART);
         if (cartItemMap != null) {
             cartItemMap.clear();
         }
@@ -47,7 +47,7 @@ public class CartUtil {
     }
 
     public static List<OrderItemDTO> getOrderItemFromCart(HttpSession session) {
-        Map<Integer, CartItem> cartItemMap = (HashMap<Integer, CartItem>) session.getAttribute(CART);
+        Map<Long, CartItem> cartItemMap = (HashMap<Long, CartItem>) session.getAttribute(CART);
 
         List<OrderItemDTO> orderItemDTOs = new ArrayList<>();
         for (CartItem ci : cartItemMap.values()) {
@@ -57,5 +57,10 @@ public class CartUtil {
             orderItemDTOs.add(oi);
         }
         return orderItemDTOs;
+    }
+
+    public static Map<Long, CartItem> getAllCartItem(HttpSession session) {
+        Map<Long, CartItem> cartItemMap = (HashMap<Long, CartItem>) session.getAttribute(CART);
+        return cartItemMap;
     }
 }

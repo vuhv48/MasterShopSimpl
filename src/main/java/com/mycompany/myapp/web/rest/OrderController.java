@@ -59,13 +59,11 @@ public class OrderController {
         try {
             List<OrderItemDTO> orderItemDTOs = CartUtil.getOrderItemFromCart(session);
             double totalSum = 0;
-            for (OrderItemDTO orderItemDTO : orderItemDTOs) {
-                orderItemService.save(orderItemDTO);
-            }
+            orderService.addOrderDTO(orderDTO, orderItemDTOs);
         } catch (NullPointerException ex) {
             System.out.println("Gio hang k co gi");
         }
-        orderService.save(orderDTO);
+        //orderService.save(orderDTO);
         return "test ordering order controller";
     }
 

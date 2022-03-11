@@ -24,12 +24,6 @@ public class OrderItem {
     private Long id;
 
     @Column
-    private Date createTime;
-
-    @Column
-    private Date updateTime;
-
-    @Column
     private Integer quantity;
 
     @OneToOne

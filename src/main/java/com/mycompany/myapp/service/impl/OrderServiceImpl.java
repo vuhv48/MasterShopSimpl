@@ -1,9 +1,14 @@
 package com.mycompany.myapp.service.impl;
 
+import com.mycompany.myapp.domain.Order;
+import com.mycompany.myapp.domain.OrderItem;
+import com.mycompany.myapp.domain.Product;
+import com.mycompany.myapp.repository.OrderItemRepository;
 import com.mycompany.myapp.repository.OrderRepository;
 import com.mycompany.myapp.service.IOrderService;
 import com.mycompany.myapp.service.dto.OrderDTO;
 import com.mycompany.myapp.service.dto.OrderItemDTO;
+import com.mycompany.myapp.service.mapper.OrderItemMapper;
 import com.mycompany.myapp.service.mapper.OrderMapper;
 import java.util.List;
 import java.util.Optional;
@@ -19,12 +24,19 @@ public class OrderServiceImpl implements IOrderService {
     OrderRepository orderRepository;
 
     @Autowired
+    OrderItemRepository orderItemRepository;
+
+    @Autowired
     OrderMapper orderMapper;
+
+    @Autowired
+    OrderItemMapper orderItemMapper;
 
     @Override
     public OrderDTO save(OrderDTO orderDTO) {
-        // TODO Auto-generated method stub
-        return null;
+        Order order = orderMapper.toEntity(orderDTO);
+        order = orderRepository.save(order);
+        return orderMapper.toDto(order);
     }
 
     @Override
@@ -58,7 +70,11 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public void addOrderDTO(OrderDTO orderDTO, List<OrderItemDTO> orderItemDTOs) {
-        // TODO Auto-generated method stub
-
+        OrderDTO orderDTOWithId = save(orderDTO);
+        for (OrderItemDTO orderItemDTO : orderItemDTOs) {
+            orderItemDTO.setOrderId(orderDTOWithId.getId());
+            OrderItem orderItem = orderItemMapper.toEntity(orderItemDTO);
+            orderItemRepository.save(orderItem);
+        }
     }
 }
