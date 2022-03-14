@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface IOrderService {
     OrderDTO save(OrderDTO orderDTO);
-    Optional<OrderDTO> findById(Long id);
+    OrderDTO findById(Long id);
     List<OrderDTO> findAll();
     List<OrderDTO> findOrder(Pageable pageable);
     void deleteOrder(Long id);

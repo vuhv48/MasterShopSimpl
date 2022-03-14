@@ -30,4 +30,9 @@ public class OrderItemServiceImpl implements IOrderItemService {
         orderItem = orderItemRepository.save(orderItem);
         return orderItemMapper.toDto(orderItem);
     }
+
+    @Override
+    public List<OrderItemDTO> findByOrderItemId(Long orderId) {
+        return orderItemRepository.findByOrderId(orderId).stream().map(orderItemMapper::toDto).collect(Collectors.toList());
+    }
 }

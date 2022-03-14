@@ -7,4 +7,6 @@ public interface IOrderItemService {
     List<OrderItemDTO> findAll();
 
     OrderItemDTO save(OrderItemDTO orderItemDTO);
+
+    List<OrderItemDTO> findByOrderItemId(Long orderId);
 }

@@ -11,6 +11,7 @@ import com.mycompany.myapp.service.util.Constants;
 import com.mycompany.myapp.util.CartUtil;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +47,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/ordering", method = RequestMethod.POST)
-    public String ordering(HttpSession session) {
+    public boolean ordering(HttpSession session) {
         OrderDTO orderDTO = new OrderDTO();
         //orderDTO.setCreateTime(new Date().toString());
         User userCurrentLogin = userService.getUserWithAuthorities().get();
@@ -61,10 +62,10 @@ public class OrderController {
             double totalSum = 0;
             orderService.addOrderDTO(orderDTO, orderItemDTOs);
         } catch (NullPointerException ex) {
-            System.out.println("Gio hang k co gi");
+            return false;
         }
-        //orderService.save(orderDTO);
-        return "test ordering order controller";
+        CartUtil.cleanCart(session);
+        return true;
     }
 
     @RequestMapping(value = "/orderitems/test", method = RequestMethod.POST)
@@ -73,5 +74,15 @@ public class OrderController {
         System.out.println(orderItemDTO);
         orderItemService.save(orderItemDTO);
         return "add order items ok....";
+    }
+
+    @RequestMapping(value = "/orderview/{id}", method = RequestMethod.GET)
+    public OrderDTO orderView(@PathVariable Long id, HttpSession session) {
+        return orderService.findById(id);
+    }
+
+    @RequestMapping(value = "/orderitemview/{orderId}", method = RequestMethod.GET)
+    public List<OrderItemDTO> orderItemView(@PathVariable Long orderId, HttpSession session) {
+        return orderItemService.findByOrderItemId(orderId);
     }
 }

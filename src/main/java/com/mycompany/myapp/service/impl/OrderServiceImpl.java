@@ -40,9 +40,12 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public Optional<OrderDTO> findById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+    public OrderDTO findById(Long id) {
+        Optional<Order> order = orderRepository.findById(id);
+        if (order.get() == null) {
+            return null;
+        }
+        return orderMapper.toDto(order.get());
     }
 
     @Override
