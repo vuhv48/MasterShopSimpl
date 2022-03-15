@@ -9,6 +9,16 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'shopSimple2022T3App.student.home.title' },
         loadChildren: () => import('./student/student.module').then(m => m.StudentModule),
       },
+      {
+        path: 'product-shop',
+        data: { pageTitle: 'shopSimple2022T3App.student.home.title' },
+        loadChildren: () => import('./product-user/product-user.module').then(m => m.ProductUserModule),
+      },
+      {
+        path: 'cart',
+        data: { pageTitle: 'shopSimple2022T3App.student.home.title' },
+        loadChildren: () => import('./cart/cart.module').then(m => m.CartModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

@@ -35,7 +35,7 @@ public class ProductController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/product/test")
+    @GetMapping("/products/test")
     public String findAllTest() {
         return "test controller findAllTest ok....";
     }

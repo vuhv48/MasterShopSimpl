@@ -29,7 +29,7 @@ public class Product {
     private Date updateTime;
 
     @Column
-    private String title;
+    private String name;
 
     @Column
     private Long point;

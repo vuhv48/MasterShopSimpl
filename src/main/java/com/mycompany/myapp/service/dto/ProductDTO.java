@@ -13,7 +13,7 @@ public class ProductDTO {
 
     private String updateTime;
 
-    private String title;
+    private String name;
 
     private Long point;
 
