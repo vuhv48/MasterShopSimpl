@@ -30,11 +30,6 @@ export class CartDetailComponent implements OnInit {
       next: (res: HttpResponse<ICartItem[]>) => {
         this.isLoading = true;
         this.cartItems = res.body ?? [];
-        //this.productDTOF =  res.body.
-        var name = '';
-        res.body?.map((item: any) => {
-          name = item.IProductUser.name;
-        });
         this.size = this.cartItems.length;
       },
       error: () => {
