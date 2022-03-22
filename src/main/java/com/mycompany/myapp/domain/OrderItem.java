@@ -29,6 +29,9 @@ public class OrderItem {
     @OneToOne
     private Product product;
 
+    @Column
+    private Double productPrice;
+
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;

@@ -6,6 +6,7 @@ import com.mycompany.myapp.service.dto.ProductDTO;
 import com.mycompany.myapp.service.util.Constants;
 import com.mycompany.myapp.util.CartItem;
 import com.mycompany.myapp.util.CartUtil;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -26,8 +27,8 @@ public class CartController {
     IProductService productService;
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
-    public Map<Long, CartItem> cart(HttpSession session) {
-        return CartUtil.getAllCartItem(session);
+    public Collection<CartItem> cart(HttpSession session) {
+        return CartUtil.getAllCartItem(session).values();
     }
 
     @RequestMapping(value = "/cart/addToCart", method = RequestMethod.POST)

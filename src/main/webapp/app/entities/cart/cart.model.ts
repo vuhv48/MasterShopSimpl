@@ -1,7 +1,9 @@
+import { IProductUser } from '../product-user/product-user.model';
+
 export interface ICartItem {
-  productDtoId?: number;
+  productDto?: IProductUser;
   total?: number;
 }
 export class CartItem implements ICartItem {
-  constructor(public productDtoId?: number, public total?: number) {}
+  constructor(public productDto?: IProductUser, public total?: number, public totalTest?: number) {}
 }

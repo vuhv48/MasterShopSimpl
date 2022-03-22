@@ -46,6 +46,9 @@ public class Product {
     @Column
     private Long stock;
 
+    @Column
+    private Double price;
+
     @ManyToOne
     @JoinColumn
     private User user;

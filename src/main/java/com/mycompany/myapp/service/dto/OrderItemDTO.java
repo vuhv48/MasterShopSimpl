@@ -10,7 +10,8 @@ import lombok.ToString;
 public class OrderItemDTO {
 
     private Long id;
-    private Long productId;
-    private Long orderId;
     private Integer quantity;
+    private Long productId;
+    private Double productPrice;
+    private Long orderId;
 }

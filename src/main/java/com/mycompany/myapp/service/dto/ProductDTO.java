@@ -28,4 +28,6 @@ public class ProductDTO {
     private Long userId;
 
     private Long masterPicId;
+
+    private Double price;
 }

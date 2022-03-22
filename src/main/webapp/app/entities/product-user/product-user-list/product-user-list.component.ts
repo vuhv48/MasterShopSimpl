@@ -35,7 +35,16 @@ export class ProductUserListComponent implements OnInit {
   testClick(): void {
     console.log('test click ok');
     this.isLoading = true;
-    this.cartService.addToCart().subscribe(
+    this.cartService.addToCartTest().subscribe(
+      () => console.log('add to cart success...'),
+      () => {
+        this.isLoading = false;
+      }
+    );
+  }
+  addToCart(id: number, total: string): void {
+    console.log('add to cart backend cua fontend...');
+    this.cartService.addToCart(id, total).subscribe(
       () => console.log('add to cart success...'),
       () => {
         this.isLoading = false;

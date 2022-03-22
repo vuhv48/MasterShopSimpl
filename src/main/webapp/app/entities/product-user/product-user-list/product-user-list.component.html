@@ -52,8 +52,9 @@
           </h3>
           <p class="price"><del></del>$143.00</p>
           <p class="buttons">
-            <a href="detail.html" class="btn btn-outline-secondary">View detail</a
-            ><a (click)="testClick()" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+            <input type="number" name="total" id="total" value="0" min="0" #total />
+            <a (click)="addToCart(product.id!, total.value)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+            <a href="detail.html" class="btn btn-outline-secondary">View detail</a>
           </p>
         </div>
         <!-- /.text-->
