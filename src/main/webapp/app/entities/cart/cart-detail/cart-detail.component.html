@@ -31,15 +31,17 @@
                     <!-- <tr *ngFor=""> let item of [].constructor(size); let i = index -->
                     <tr *ngFor="let cartItem of cartItems">
                       <td>
-                        <a href="#"><img src="img/detailsquare.jpg" alt="White Blouse Armani" /></a>
+                        <a href="#"><img src="img/detailsquare.jpg" alt="Not found image" /></a>
                       </td>
-                      <td><a href="#"></a></td>
                       <td>
-                        <input type="number" value="" class="form-control" />
+                        <a href="#">{{ cartItem.productDTO?.name }}</a>
                       </td>
-                      <td>$123.00</td>
+                      <td>
+                        <input type="number" value="{{ cartItem.total }}" class="form-control" />
+                      </td>
+                      <td>{{ cartItem.productDTO?.price }}</td>
                       <td>$0.00</td>
-                      <td>$246.00</td>
+                      <td>$</td>
                       <td>
                         <a href="#"><i class="fa fa-trash-o"></i></a>
                       </td>
@@ -60,7 +62,9 @@
                 </div>
                 <div class="right">
                   <button class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Update cart</button>
-                  <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></button>
+                  <button type="submit" class="btn btn-primary" (click)="testOrder()">
+                    Proceed to checkout <i class="fa fa-chevron-right"></i>
+                  </button>
                 </div>
               </div>
             </form>

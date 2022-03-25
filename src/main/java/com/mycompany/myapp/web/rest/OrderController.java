@@ -36,17 +36,23 @@ public class OrderController {
     @Autowired
     UserService userService;
 
+    @GetMapping("/orders/test")
+    public Boolean test() {
+        System.out.println("test api ok...");
+        return true;
+    }
+
     @GetMapping("/orders")
     public List<OrderDTO> findAll() {
         return orderService.findAll();
     }
 
-    @GetMapping("/orderitems")
+    @GetMapping("/orders/items")
     public List<OrderItemDTO> findAllItem() {
         return orderItemService.findAll();
     }
 
-    @RequestMapping(value = "/ordering", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders/ordering", method = RequestMethod.POST)
     public boolean ordering(HttpSession session) {
         OrderDTO orderDTO = new OrderDTO();
         //orderDTO.setCreateTime(new Date().toString());
@@ -68,7 +74,7 @@ public class OrderController {
         return true;
     }
 
-    @RequestMapping(value = "/orderitems/test", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders/items/test", method = RequestMethod.POST)
     @ResponseBody
     public String addOrderItems(OrderItemDTO orderItemDTO) {
         System.out.println(orderItemDTO);
@@ -76,12 +82,12 @@ public class OrderController {
         return "add order items ok....";
     }
 
-    @RequestMapping(value = "/orderview/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/orders/view/{id}", method = RequestMethod.GET)
     public OrderDTO orderView(@PathVariable Long id, HttpSession session) {
         return orderService.findById(id);
     }
 
-    @RequestMapping(value = "/orderitemview/{orderId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/orders/itemview/{orderId}", method = RequestMethod.GET)
     public List<OrderItemDTO> orderItemView(@PathVariable Long orderId, HttpSession session) {
         return orderItemService.findByOrderItemId(orderId);
     }
