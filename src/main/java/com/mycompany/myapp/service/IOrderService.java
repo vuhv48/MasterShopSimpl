@@ -3,7 +3,6 @@ package com.mycompany.myapp.service;
 import com.mycompany.myapp.service.dto.OrderDTO;
 import com.mycompany.myapp.service.dto.OrderItemDTO;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 
 public interface IOrderService {

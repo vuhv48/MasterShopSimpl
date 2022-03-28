@@ -26,6 +26,7 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { OrderDetailComponent } from './entities/order/order-detail/order-detail.component';
+import { OrderitemDetailComponent } from './entities/orderitem/orderitem-detail/orderitem-detail.component';
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { OrderDetailComponent } from './entities/order/order-detail/order-detail
     ActiveMenuDirective,
     FooterComponent,
     OrderDetailComponent,
+    OrderitemDetailComponent,
   ],
   bootstrap: [MainComponent],
 })

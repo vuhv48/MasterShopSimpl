@@ -24,6 +24,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'shopSimple2022T3App.student.home.title' },
         loadChildren: () => import('./order/order.module').then(m => m.OrderModule),
       },
+      {
+        path: 'customer-orderitem',
+        data: { pageTitle: 'shopSimple2022T3App.student.home.title' },
+        loadChildren: () => import('./orderitem/orderitem.module').then(m => m.OrderitemModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

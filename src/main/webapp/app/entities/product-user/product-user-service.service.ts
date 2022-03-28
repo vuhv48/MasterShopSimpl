@@ -12,11 +12,17 @@ export type EntityArrayResponseType = HttpResponse<IProductUser[]>;
 })
 export class ProductUserServiceService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/products');
+  protected resourceImageUrl = this.applicationConfigService.getEndpointFor('api/getimage');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IProductUser[]>(this.resourceUrl, { params: options, observe: 'response' });
+  }
+
+  getImage(imageId: number): Observable<Blob> {
+    console.log('getImage service...');
+    return this.http.get(this.resourceImageUrl + '/' + imageId, { responseType: 'blob' });
   }
 }

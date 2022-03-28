@@ -31,26 +31,25 @@
       <div class="product">
         <div class="flip-container">
           <div class="flipper">
-            <div class="front">
-              <a href="detail.html"
-                ><img
-                  src="D:/Project Java/ShopSimple2022T3/src/main/webapp/app/entities/product-user/img/product1.jpg"
-                  alt="No img"
-                  class="img-fluid"
-              /></a>
-            </div>
+            <!-- <div class="front">
+              <a href="detail.html"><img
+                  src="/uploads/855678eccbf5fcf56b957cc5e4088577.jpeg"
+                  alt="No img fix" 
+                  style="width:128px;height:128px"/>
+                </a>
+            </div> -->
 
-            <div class="back">
-              <a href="detail.html"><img src="img/product1_2.jpg" alt="" class="img-fluid" /></a>
+            <div>
+              <img [src]="imageToShow" alt="Not found image" class="img-fluid" />
             </div>
           </div>
         </div>
-        <a href="detail.html" class="invisible"><img src="img/product1.jpg" alt="" class="img-fluid" /></a>
+        <!-- <a href="detail.html" class="invisible"><img src="img/product1.jpg" alt="" class="img-fluid" /></a> -->
         <div class="text">
           <h3>
             <a href="detail.html">{{ product.name }}</a>
           </h3>
-          <p class="price"><del></del>$143.00</p>
+          <p class="price"><del></del>${{ product.price }}</p>
           <p class="buttons">
             <input type="number" name="total" id="total" value="0" min="0" #total />
             <a (click)="addToCart(product.id!, total.value)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>

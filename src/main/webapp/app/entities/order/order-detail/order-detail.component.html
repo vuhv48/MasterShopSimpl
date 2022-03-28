@@ -58,7 +58,8 @@
                     <td>{{ myOrder.createTime }}</td>
                     <td>$ {{ myOrder.finalPrice }}</td>
                     <td><span class="badge badge-info">Being prepared</span></td>
-                    <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
+                    <td><button [routerLink]="['/customer-orderitem', myOrder.id]" class="btn btn-primary btn-sm">View</button></td>
+                    <!-- , '/customer-orderitem' -->
                   </tr>
                 </tbody>
               </table>
