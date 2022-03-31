@@ -29,7 +29,7 @@
         </li>
         <!-- vuhv48@gmail.com add -->
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a *jhiHasAnyAuthority="'ROLE_USER'" ngbDropdown class="nav-link" routerLink="/product-shop" (click)="collapseNavbar()">
+          <a class="nav-link" routerLink="/product-shop" (click)="collapseNavbar()">
             <span>
               <fa-icon icon="home"></fa-icon>
               <span jhiTranslate="global.menu.product">Product</span>
@@ -37,7 +37,7 @@
           </a>
         </li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a *jhiHasAnyAuthority="'ROLE_USER'" ngbDropdown class="nav-link" routerLink="/cart" (click)="collapseNavbar()">
+          <a class="nav-link" routerLink="/cart" (click)="collapseNavbar()">
             <span>
               <fa-icon icon="home"></fa-icon>
               <span jhiTranslate="global.menu.cart">Cart</span>
@@ -77,8 +77,6 @@
             <!-- vuhv48@gmail.com add -->
             <li>
               <a
-                *jhiHasAnyAuthority="'ROLE_ADMIN'"
-                ngbDropdown
                 class="dropdown-item"
                 routerLink="product-admin"
                 routerLinkActive="active"
