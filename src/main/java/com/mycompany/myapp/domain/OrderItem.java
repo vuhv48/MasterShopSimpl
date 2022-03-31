@@ -1,6 +1,5 @@
 package com.mycompany.myapp.domain;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

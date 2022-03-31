@@ -40,7 +40,17 @@
             </div> -->
 
             <div>
-              <img [src]="imageToShow" alt="Not found image" class="img-fluid" />
+              <img
+                [src]="imageToShow"
+                alt="Not found image"
+                class="img-fluid"
+                *ngIf="!isImageLoading; else noImageFound"
+                width="360px"
+                height="640px"
+              />
+              <ng-template #noImageFound>
+                <img src="fallbackImage.png" alt="Fallbackimage" />
+              </ng-template>
             </div>
           </div>
         </div>

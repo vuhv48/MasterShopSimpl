@@ -92,11 +92,13 @@ public class ProductController {
         return productDTO;
     }
 
-    @RequestMapping(value = "/getimage/{photo}", method = RequestMethod.GET)
-    public ResponseEntity<ByteArrayResource> getImage(@PathVariable("photo") Long picId) {
+    @RequestMapping(value = "/getimage/{picId}", method = RequestMethod.GET)
+    public ResponseEntity<ByteArrayResource> getImage(@PathVariable("picId") Long picId) {
         if (!picId.equals("") || picId != null) {
             try {
                 String photo = getUrlPicture(picId);
+                System.out.println("=============>");
+                System.out.println(photo);
                 Path filename = Paths.get("uploads", photo);
                 byte[] buffer = Files.readAllBytes(filename);
                 ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);

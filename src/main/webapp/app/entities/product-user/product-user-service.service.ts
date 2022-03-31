@@ -23,6 +23,6 @@ export class ProductUserServiceService {
 
   getImage(imageId: number): Observable<Blob> {
     console.log('getImage service...');
-    return this.http.get(this.resourceImageUrl + '/' + imageId, { responseType: 'blob' });
+    return this.http.get(this.resourceImageUrl + '/' + imageId.toString(), { responseType: 'blob' });
   }
 }

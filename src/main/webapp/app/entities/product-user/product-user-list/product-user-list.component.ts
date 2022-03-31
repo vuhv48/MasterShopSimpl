@@ -17,12 +17,12 @@ export class ProductUserListComponent implements OnInit {
   imageToShow: any;
   isLoading = false;
   isImageLoading = false;
+  testModel = {};
 
   constructor(
     protected productUserService: ProductUserServiceService,
     protected cartService: CartService,
-    protected modalService: NgbModal,
-    private sanitizer: DomSanitizer
+    protected modalService: NgbModal
   ) {}
 
   loadAll(): void {
@@ -31,6 +31,7 @@ export class ProductUserListComponent implements OnInit {
       next: (res: HttpResponse<IProductUser[]>) => {
         this.isLoading = false;
         this.products = res.body ?? [];
+        this.getImageFromService();
       },
       error: () => {
         this.isLoading = false;
@@ -67,7 +68,6 @@ export class ProductUserListComponent implements OnInit {
       },
       false
     );
-
     //if (image!=null) {
     reader.readAsDataURL(image);
     //}
@@ -88,6 +88,5 @@ export class ProductUserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
-    this.getImageFromService();
   }
 }
