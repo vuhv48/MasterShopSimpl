@@ -1,6 +1,7 @@
 package com.mycompany.myapp.util;
 
 import com.mycompany.myapp.domain.OrderItem;
+import com.mycompany.myapp.service.IProductService;
 import com.mycompany.myapp.service.dto.OrderItemDTO;
 import com.mycompany.myapp.service.dto.ProductDTO;
 import com.mycompany.myapp.service.util.Constants;
@@ -9,10 +10,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CartUtil {
 
     public static final String CART = Constants.CART;
+
+    @Autowired
+    IProductService productService;
 
     public static void saveProductToCart(HttpSession session, ProductDTO productDTO, Integer total) {
         Map<Long, CartItem> cartItemMap = (HashMap<Long, CartItem>) session.getAttribute(CART);
@@ -50,10 +57,12 @@ public class CartUtil {
         Map<Long, CartItem> cartItemMap = (HashMap<Long, CartItem>) session.getAttribute(CART);
 
         List<OrderItemDTO> orderItemDTOs = new ArrayList<>();
+
         for (CartItem ci : cartItemMap.values()) {
             OrderItemDTO oi = new OrderItemDTO();
             oi.setProductId(ci.getProductDTO().getId());
             oi.setQuantity(ci.getTotal());
+            oi.setProductPrice(ci.getProductDTO().getPrice() * ci.getTotal());
             orderItemDTOs.add(oi);
         }
         return orderItemDTOs;

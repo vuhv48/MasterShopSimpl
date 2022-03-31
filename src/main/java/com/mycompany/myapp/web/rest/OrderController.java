@@ -3,6 +3,7 @@ package com.mycompany.myapp.web.rest;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.service.IOrderItemService;
 import com.mycompany.myapp.service.IOrderService;
+import com.mycompany.myapp.service.IProductService;
 import com.mycompany.myapp.service.UserService;
 import com.mycompany.myapp.service.dto.OrderDTO;
 import com.mycompany.myapp.service.dto.OrderItemDTO;
@@ -29,6 +30,9 @@ public class OrderController {
 
     @Autowired
     IOrderService orderService;
+
+    @Autowired
+    IProductService productService;
 
     @Autowired
     IOrderItemService orderItemService;
@@ -66,6 +70,10 @@ public class OrderController {
         try {
             List<OrderItemDTO> orderItemDTOs = CartUtil.getOrderItemFromCart(session);
             double totalSum = 0;
+            for (int i = 0; i < orderItemDTOs.size(); i++) {
+                totalSum += orderItemDTOs.get(i).getProductPrice() * orderItemDTOs.get(i).getQuantity();
+            }
+            orderDTO.setTotalPrice(totalSum);
             orderService.addOrderDTO(orderDTO, orderItemDTOs);
         } catch (NullPointerException ex) {
             return false;
@@ -78,8 +86,12 @@ public class OrderController {
     @ResponseBody
     public String addOrderItems(OrderItemDTO orderItemDTO) {
         System.out.println(orderItemDTO);
+
+        //co the xu ly them ve gia : khuyen mai....
+        Double price = productService.findById(orderItemDTO.getId()).getPrice() * orderItemDTO.getQuantity();
+        orderItemDTO.setProductPrice(price);
         orderItemService.save(orderItemDTO);
-        return "add order items ok....";
+        return "Ok";
     }
 
     @RequestMapping(value = "/orders/view/{id}", method = RequestMethod.GET)

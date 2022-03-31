@@ -14,6 +14,8 @@ export class CartDetailComponent implements OnInit {
   cartItems?: ICartItem[];
   size: number | null = 0;
   isLoading = false;
+  price?: number;
+  totalAllProductInCart: number | null = 0;
 
   constructor(protected cartService: CartService, protected orderService: OrderService, protected modalService: NgbModal) {}
 
@@ -31,7 +33,6 @@ export class CartDetailComponent implements OnInit {
         this.cartItems = res.body ?? [];
         this.size = this.cartItems.length;
         console.log(this.cartItems);
-        this.cartItems.forEach(o1 => console.log(o1.productDTO?.note));
       },
       error: () => {
         this.isLoading = false;
